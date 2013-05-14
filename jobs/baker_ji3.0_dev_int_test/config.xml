@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <logRotator>
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>20</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.redmine.RedmineProjectProperty>
+      <redmineWebsite>https://redmine.mincom.com/redmine/</redmineWebsite>
+      <projectName>elljavinf</projectName>
+      <redmineVersion>true</redmineVersion>
+    </hudson.plugins.redmine.RedmineProjectProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>JI_INFRASTRUCTURE</name>
+          <description></description>
+          <defaultValue>grant_0.0.0.0_rc_</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>env.JAVA_HOME</name>
+          <description></description>
+          <defaultValue>/usr</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>sonar.cpd.skip</name>
+          <description>sonar.cpd.skip=true</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>env.FLEX_HOME_4</name>
+          <description>
+</description>
+          <defaultValue>/opt/sdks/flex_sdk_4.1.0.16076/</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>rm -f /home/gw5733/.ivy2/cache/mincom.external/hibernate3/ivy-working\@mincom-components.xml</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Ant>
+      <targets>build</targets>
+      <buildFile>antCommonImpl/AntCommonScripts/buildBaker.xml</buildFile>
+      <properties>pluginNumber=${JI_INFRASTRUCTURE}${BUILD_NUMBER}
+baseline.version=JI3.0_DEV_INT.+
+infrastructure.version.number=${JI_INFRASTRUCTURE}${BUILD_NUMBER}
+env.infrastructure.version.number=${JI_INFRASTRUCTURE}${BUILD_NUMBER}
+#kr2
+build.kr2=false
+kr2.repo=/mincom/git/msd-ji-kr2
+build.for.sonar=true</properties>
+    </hudson.tasks.Ant>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

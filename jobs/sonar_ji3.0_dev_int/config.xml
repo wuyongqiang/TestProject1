@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <logRotator>
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>20</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.redmine.RedmineProjectProperty>
+      <redmineWebsite>https://redmine.mincom.com/redmine/</redmineWebsite>
+      <projectName>elljavinf</projectName>
+      <redmineVersion>true</redmineVersion>
+    </hudson.plugins.redmine.RedmineProjectProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>JI_INFRASTRUCTURE</name>
+          <description>grant_rc_
+3.3.0.0_rc_</description>
+          <defaultValue>3.3.0.0_rc_</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>env.JAVA_HOME</name>
+          <description></description>
+          <defaultValue>/usr</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>sonar.cpd.skip</name>
+          <description>sonar.cpd.skip=true</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+        <url>git@github.com:Mincom/msd-ji-core</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/ji-3.0_dev_int</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <recursiveSubmodules>false</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>false</clean>
+    <wipeOutWorkspace>false</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir></relativeTargetDir>
+    <excludedRegions></excludedRegions>
+    <excludedUsers></excludedUsers>
+    <gitConfigName></gitConfigName>
+    <gitConfigEmail></gitConfigEmail>
+    <skipTag>false</skipTag>
+    <scmName></scmName>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>rm -f /home/gw5733/.ivy2/cache/mincom.external/hibernate3/ivy-working\@mincom-components.xml</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Ant>
+      <targets>ivy.baker.results</targets>
+      <buildFile>antCommonImpl/AntCommonScripts/buildBaker.xml</buildFile>
+      <properties>pluginNumber=${JI_INFRASTRUCTURE}+
+baseline.version=JI3.0_DEV_INT.+
+infrastructure.version.number=${JI_INFRASTRUCTURE}+
+env.infrastructure.version.number=${JI_INFRASTRUCTURE}+
+#kr2
+build.kr2=false
+kr2.repo=/mincom/git/msd-ji-kr2</properties>
+    </hudson.tasks.Ant>
+  </builders>
+  <publishers>
+    <hudson.plugins.sonar.SonarPublisher>
+      <configVersion>1</configVersion>
+      <branch></branch>
+      <language></language>
+      <mavenOpts>-XX:+UseConcMarkSweepGC -Xms256m -Xmx2048m -XX:MaxPermSize=512m </mavenOpts>
+      <jobAdditionalProperties>-DconserveSpace=true -Dsonar.core.codeCoveragePlugin=emma -Dsonar.emma.reportPath=bakeroutputs/runtime/reports/emma-junit -Dsonar.dynamicAnalysis=reuseReports</jobAdditionalProperties>
+      <mavenInstallationName></mavenInstallationName>
+      <rootPom></rootPom>
+      <lightProject>
+        <groupId>Mincom</groupId>
+        <artifactId>baker_ji3.0_dev_int_sonartest</artifactId>
+        <projectName>baker_ji3.0_dev_int_sonartest</projectName>
+        <projectVersion>${JI_INFRASTRUCTURE}${BUILD_NUMBER}</projectVersion>
+        <projectDescription>baker_ji3.0_dev_int_sonartest</projectDescription>
+        <javaVersion></javaVersion>
+        <projectSrcDir>buildUtil/JavaTranslation/src, buildUtil/MSOProperties/src, edoiImpl/EllipseQueryLanguage/src, edoiImpl/EDOICommon/EDOICommonEJB/src, ellipseJImpl/DbTest/src, errorsImpl/Errors/src, basicTypesImpl/EllipseBasicTypes/src, lsiImpl/LegacyNameTranslator/src, preferencesImpl/Preferences/src, mediaUtilImpl/MediaUtilities/src, contextImpl/ContextInfo/src, coreImpl/EllipseFileSystem/src, coreImpl/EllipsePrinting/src, serviceConnMngrImpl/HostAuthentication/src, ellipseJImpl/EllipsePlugin/src, ellipseJImpl/naca/JLib/src, ellipseJImpl/naca/NacaRT/src, ellipseJImpl/naca/NacaTrans/src, ellipseJImpl/MincomNacaTrans/src, ellipseJImpl/LegacyEDOI/src, ellipseJImpl/EllipseMessages/src, ellipseJImpl/EllipseJavaProcessor/src, ellipseJImpl/MSOCustom/src, lsiImpl/LegacyServiceInterface/src, lsiImpl/LegacyServiceInterfaceGenerator/src, ellipseJImpl/CBRUtility/src, ellipseJImpl/EJPSocketServer/src, ellipseJImpl/LegacyESBI/src, ellipseJImpl/LegacyESBIGenerator/src, ellipseJImpl/EllipseConfiguration/src, coreImpl/ImmediateBatch/ImmediateBatchEJB/src, coreImpl/InfrastructureCore/src, coreImpl/EllipseLogging/src, lsiImpl/StdTextCustomServicePojo/src, scriptImpl/EllipseScripting/src, coreImpl/EllipseEvent/src, coreTest/TestingInfrastructure/src, rdlImpl/LegacyDictionaryService/src, rdlImpl/LegacySubroutineService/src, rdlImpl/Parser/src, rdlImpl/Runner/src, rdlImpl/Jasper/src, rdlImpl/Loader/src, rdlImpl/Compare/src, reportImpl/EllipseReporting/src, batchImpl/BEC/src, ellipseJImpl/CrystalReport/src, batchImpl/BECTest/src, serviceConnMngrImpl/ServiceConnectionManager/src, serviceConnMngrImpl/ServiceConnectionManagerPojo/src, riaImpl/QueryBase/src, mse000Impl/MSE000/src, riaImpl/RIAInfrastructure/src, mse000Impl/MSE000RIA/src, riaImpl/RIAInfrastructureEllipse/src, riaImpl/RIAInfrastructureLinkOne/src, riaImpl/RIAInfrastructureCCLAS/src, riaImpl/RIAWar/src, riaImpl/RIALite/src, riaImpl/RemoteControlAPI/src, riaImpl/FlexAutomated/src, riaImpl/FlexUnitTests/src, gatherImpl/Gather/src, gatherImpl/GatherInfrastructure/src, webSrvcImpl/EllipseWebServicesCore/src, webSrvcImpl/EllipseWebServicesServer/src, webSrvcImpl/EllipseWebServicesWeb/src, nextGenImpl/DataBinder/src, nextGenImpl/KPI/SQLBuilder/src, nextGenImpl/DataExplorerInfrastructure/src, nextGenImpl/DataExplorerWAR/src, deployUtil/ColdStart/src, deployUtil/Conversion/src, ellipseJImpl/ScrngenXML/src, scriptImpl/EllipseHooks/src, monitorImpl/EllipseMonitor/src, scriptImpl/ScriptRunner/src, javaPatchingImpl/PatchGen/src</projectSrcDir>
+        <projectSrcEncoding></projectSrcEncoding>
+        <projectBinDir>bakeroutputs/runtime/lib</projectBinDir>
+        <reports>
+          <surefireReportsPath>bakeroutputs/runtime/reports/junit</surefireReportsPath>
+          <coberturaReportPath></coberturaReportPath>
+          <cloverReportPath>runtime/reports/emma-junit/coverage.xml</cloverReportPath>
+        </reports>
+      </lightProject>
+    </hudson.plugins.sonar.SonarPublisher>
+  </publishers>
+  <buildWrappers/>
+</project>

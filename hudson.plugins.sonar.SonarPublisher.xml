@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.sonar.SonarPublisher_-DescriptorImpl>
+  <helpRedirect/>
+  <installations>
+    <hudson.plugins.sonar.SonarInstallation>
+      <name>mysonar</name>
+      <disabled>false</disabled>
+      <serverUrl>http://msdlnx02.mincom.oz.au:9000</serverUrl>
+      <serverPublicUrl></serverPublicUrl>
+      <mojoVersion></mojoVersion>
+      <databaseUrl>jdbc:mysql://msdlnx02.dev.mincom.com:3306/sonar?useUnicode=true&amp;characterEncoding=utf8</databaseUrl>
+      <databaseDriver>com.mysql.jdbc.Driver</databaseDriver>
+      <databaseLogin>sonar</databaseLogin>
+      <databasePassword>c29uYXI=</databasePassword>
+      <additionalProperties></additionalProperties>
+      <triggers>
+        <scmBuilds>false</scmBuilds>
+        <timerBuilds>false</timerBuilds>
+        <userBuilds>false</userBuilds>
+        <snapshotDependencyBuilds>false</snapshotDependencyBuilds>
+        <skipIfBuildFails>false</skipIfBuildFails>
+      </triggers>
+    </hudson.plugins.sonar.SonarInstallation>
+  </installations>
+</hudson.plugins.sonar.SonarPublisher_-DescriptorImpl>
