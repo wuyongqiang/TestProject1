@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.maven.MavenModuleSet_-DescriptorImpl>
-  <helpRedirect/>
+<hudson.maven.MavenModuleSet_-DescriptorImpl plugin="maven-plugin@1.514">
   <mavenValidationLevels class="linked-hash-map">
     <entry>
       <string>DEFAULT</string>
@@ -27,4 +26,5 @@
       <int>30</int>
     </entry>
   </mavenValidationLevels>
+  <localRepository class="hudson.maven.local_repo.DefaultLocalRepositoryLocator"/>
 </hudson.maven.MavenModuleSet_-DescriptorImpl>
