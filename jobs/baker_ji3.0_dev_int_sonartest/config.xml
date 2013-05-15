@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description></description>
-  <logRotator>
+  <description>I&apos;ve add something here to test the git track the configuration changes.12</description>
+  <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>20</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
@@ -10,7 +10,7 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.redmine.RedmineProjectProperty>
+    <hudson.plugins.redmine.RedmineProjectProperty plugin="redmine@0.9">
       <redmineWebsite>https://redmine.mincom.com/redmine/</redmineWebsite>
       <projectName>elljavinf</projectName>
       <redmineVersion>true</redmineVersion>
@@ -71,7 +71,7 @@
     <hudson.tasks.Shell>
       <command>rm -f /home/gw5733/.ivy2/cache/mincom.external/hibernate3/ivy-working\@mincom-components.xml</command>
     </hudson.tasks.Shell>
-    <hudson.tasks.Ant>
+    <hudson.tasks.Ant plugin="ant@1.2">
       <targets></targets>
       <buildFile>antCommonImpl/AntCommonScripts/buildBaker.xml</buildFile>
       <properties>pluginNumber=${JI_INFRASTRUCTURE}${BUILD_NUMBER}
@@ -85,7 +85,7 @@ kr2.repo=/mincom/git/msd-ji-kr2</properties>
     </hudson.tasks.Ant>
   </builders>
   <publishers>
-    <hudson.plugins.pmd.PmdPublisher>
+    <hudson.plugins.pmd.PmdPublisher plugin="pmd@3.21">
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
@@ -93,7 +93,7 @@ kr2.repo=/mincom/git/msd-ji-kr2</properties>
       <defaultEncoding></defaultEncoding>
       <canRunOnFailed>false</canRunOnFailed>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds>
+      <thresholds plugin="analysis-core@1.28">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -114,7 +114,7 @@ kr2.repo=/mincom/git/msd-ji-kr2</properties>
       <shouldDetectModules>false</shouldDetectModules>
       <pattern>runtime/reports/**/pmd/*.xml</pattern>
     </hudson.plugins.pmd.PmdPublisher>
-    <hudson.plugins.sonar.SonarPublisher>
+    <hudson.plugins.sonar.SonarPublisher plugin="sonar@1.6.1">
       <configVersion>1</configVersion>
       <branch></branch>
       <language></language>
