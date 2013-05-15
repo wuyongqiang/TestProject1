@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<hudson.tasks.Mailer_-DescriptorImpl>
-  <helpRedirect/>
+<hudson.tasks.Mailer_-DescriptorImpl plugin="mailer@1.4">
   <defaultSuffix>@mincom.com</defaultSuffix>
   <hudsonUrl>http://localhost:8888/</hudsonUrl>
   <adminAddress>noreply@mincom.com</adminAddress>
