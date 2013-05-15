@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description></description>
-  <logRotator>
+  <description>sdfasdfasfasdfasdf</description>
+  <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>20</numToKeep>
     <artifactDaysToKeep>-1</artifactDaysToKeep>
@@ -10,7 +10,7 @@
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.redmine.RedmineProjectProperty>
+    <hudson.plugins.redmine.RedmineProjectProperty plugin="redmine@0.9">
       <redmineWebsite>https://redmine.mincom.com/redmine/</redmineWebsite>
       <projectName>elljavinf</projectName>
       <redmineVersion>true</redmineVersion>
@@ -34,8 +34,7 @@
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>env.FLEX_HOME_4</name>
-          <description>
-</description>
+          <description></description>
           <defaultValue>/opt/sdks/flex_sdk_4.1.0.16076/</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -52,7 +51,7 @@
     <hudson.tasks.Shell>
       <command>rm -f /home/gw5733/.ivy2/cache/mincom.external/hibernate3/ivy-working\@mincom-components.xml</command>
     </hudson.tasks.Shell>
-    <hudson.tasks.Ant>
+    <hudson.tasks.Ant plugin="ant@1.2">
       <targets>build</targets>
       <buildFile>antCommonImpl/AntCommonScripts/buildBaker.xml</buildFile>
       <properties>pluginNumber=${JI_INFRASTRUCTURE}${BUILD_NUMBER}
